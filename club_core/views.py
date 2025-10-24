@@ -1,15 +1,12 @@
 
 from django.shortcuts import render
-
+from news.models import NewsItem
 
 def home_page(request):
-    # Здесь можно добавить логику для получения последних новостей
+    latest_news = NewsItem.objects.filter(is_published=True)[:5]
     context = {
-        'latest_news': [
-            {'title': 'Победа в турнире!', 'date': '20.10.2025'},
-            {'title': 'Новое расписание тренировок', 'date': '15.10.2025'},
-        ],
-        'page_title': 'Главная страница клуба'
+        'page_title': 'Главная',
+        'latest_news': latest_news,  # Передаем новости в шаблон
     }
     return render(request, 'club_core/home.html', context)
 

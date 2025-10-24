@@ -3,21 +3,20 @@
 {% block title %}Новости и Главная - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <h1>Добро пожаловать в наш клуб!</h1>
-    <p>Здесь будут анонсы, приветствие и важная информация.</p>
+    <h1>Добро пожаловать в наш Клуб!</h1>
 
-    <h2>Последние Новости</h2>
-    {% for news_item in latest_news %}
-        <div style="border: 1px dashed #ccc; padding: 5px; margin-bottom: 10px;">
-            <h3>{{ news_item.title }}</h3>
-            <p><small>{{ news_item.date }}</small></p>
-        </div>
-    {% endfor %}
-
-    <p style="margin-top: 30px;">
-        <a href="{% url 'session_list' %}">
-            <button style="padding: 15px; font-size: 16px;">Записаться на Тренировки/Турниры</button>
-        </a>
-    </p>
+    <h2>Последние новости:</h2>
+    {% if latest_news %}
+        {% for item in latest_news %}
+            <div style="border: 1px solid #ccc; margin-bottom: 10px; padding: 10px;">
+                <h3>{{ item.title }}</h3>
+                <p><small>Опубликовано: {{ item.pub_date|date:"d.m.Y" }}</small></p>
+                <p>{{ item.content|truncatechars:200 }}</p>
+                <a href="#">Читать далее... (Пока не работает)</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>На данный момент нет опубликованных новостей.</p>
+    {% endif %}
 
 {% endblock %}
