@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой Спортивный Клуб{% endblock %}</title>
+</head>
+<body>
+
+    <header>
+        <nav style="background-color: #eee; padding: 10px;">
+            <a href="{% url 'home' %}">Главная</a> |
+            <a href="#">Команды</a> |
+            <a href="{% url 'session_list' %}">Тренировки и Турниры</a> |
+            <a href="#">Состав</a>
+            </nav>
+    </header>
+
+    <main style="padding: 20px;">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 {{ request.resolver_match.app_name }}</p>
+    </footer>
+</body>
+</html>
