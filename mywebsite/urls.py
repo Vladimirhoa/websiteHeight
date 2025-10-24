@@ -24,6 +24,7 @@ urlpatterns = [
     path('schedule/', include('booking.urls')),
     path('coach/', include('coach.urls')),
     path('contacts/', include('contacts.urls')),
+    path('teams/', include('teams.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
