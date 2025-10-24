@@ -15,3 +15,5 @@ venv/
 # Скомпилированные файлы Python
 __pycache__/
 *.pyc
+
+media/
