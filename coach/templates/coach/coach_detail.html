@@ -1,21 +1,21 @@
 {% extends "club_core/base.html" %}
 
 {% block title %}{{ coach.name|default:"Тренер не найден" }} - Наш Тренер{% endblock %}
+{% if coach %}
+    {% block content %}
 
-{% block content %}
-    {% if coach %}
-        <h1>{{ coach.name }}</h1>
-        <h2>Специализация: {{ coach.specialty }}</h2>
+        {% for item in coach %}
+        <h1>{{ item.name }}</h1>
+        <h2>Специализация: {{ item.specialty }}</h2>
         
-        {% if coach.image %}
-            <img src="{{ coach.image.url }}" alt="Фото тренера {{ coach.name }}" style="max-width: 300px; height: auto;">
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="Фото тренера {{ item.name }}" style="max-width: 300px; height: auto;">
         {% endif %}
 
         <h3>Биография и Опыт:</h3>
-        <p>{{ coach.bio|linebreaksbr }}</p>
-    {% else %}
+        <p>{{ item.bio|linebreaksbr }}</p>
+        {% endfor %}
+    {% endblock %}
+{% else %}
         <h1>Информация о тренере пока недоступна.</h1>
-    {% endif %}
-
-
-{% endblock %}
+{% endif %}

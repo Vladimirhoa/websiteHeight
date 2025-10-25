@@ -9,8 +9,7 @@ venv/
 # Файлы PyCharm
 .idea/
 
-# Секретные ключи Django (если вынесете)
-# secret_key.txt
+
 
 # Скомпилированные файлы Python
 __pycache__/

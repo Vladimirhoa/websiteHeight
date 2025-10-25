@@ -1,0 +1,8 @@
+{% extends "club_core/base.html" %}
+{% block title %}{{ item.title|default:"Заголовок отсутствует" }}{% endblock %}
+{% block content %}
+    {% if item %}
+    <h2> {{item.content}}</h2>
+    {% endif %}
+{% endblock %}
+

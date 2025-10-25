@@ -10,14 +10,14 @@ def coach_detail(request):
     except Coach.DoesNotExist:
         # Если вы хотите более гибкий подход (например, если нет тренера с pk=1),
         # можно просто взять первого попавшегося, если он есть
-        coach = Coach.objects.first()
+        coach = Coach.objects.all()
         if not coach:
             # Если в базе вообще нет тренеров
             return render(request, 'coach/coach_detail.html', {'coach': None})
 
     context = {
         'coach': coach,
-        'page_title': coach.name if coach else 'Наш Тренер'
+        'page_title':'Наши Тренеры'
     }
     # 2. Передаем данные в шаблон
     return render(request, 'coach/coach_detail.html', context)
