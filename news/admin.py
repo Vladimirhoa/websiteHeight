@@ -7,3 +7,4 @@ class NewsItemAdmin(admin.ModelAdmin):
     list_filter = ('is_published', 'pub_date')
     search_fields = ('title', 'content')
 
+
