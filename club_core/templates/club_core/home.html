@@ -208,36 +208,33 @@
     <div class="carousel-inner">
 
         <div class="carousel-item active">
-            <img src="{{ latest_news.0.image_news.url }}" class="d-block w-100" alt="{{ latest_news.0.title }}">
-            <div class="container">
-                <div class="carousel-caption text-start">
-                    <h1>{{ latest_news.0.title }}</h1>
-                    <p class="opacity-75">{{ latest_news.0.content }}</p>
-                    <p><a class="btn btn-lg btn-primary" href="{% url 'news_page' latest_news.0.pk %}">Читать</a></p>
-                </div>
+    <img src="{{ latest_news.0.image_news.url }}" class="d-block w-100" alt="{{ latest_news.0.title }}" width="100%" height="100%">
+    <div class="container">
+        <div class="carousel-caption text-start">
+            <h1>{{ latest_news.0.title }}</h1>
+             <p><a class="btn btn-lg btn-primary" href="{% url 'news_page' latest_news.0.pk %}">Читать</a></p>
             </div>
+    </div>
         </div>
 
-        <div class="carousel-item">
-            <img src="{{ latest_news.1.image_news.url }}" class="d-block w-100" alt="{{ latest_news.1.title }}">
-            <div class="container">
-                <div class="carousel-caption text-start">
-                    <h1>{{ latest_news.1.title }}</h1>
-                    <p class="opacity-75">{{ latest_news.1.content }}</p>
-                    <p><a class="btn btn-lg btn-primary" href="{% url 'news_page' latest_news.1.pk %}">Читать</a></p>
-                </div>
+        <div class="carousel-item active">
+    <img src="{{ latest_news.1.image_news.url }}" class="d-block w-100" alt="{{ latest_news.1.title }}" width="100%" height="100%">
+    <div class="container">
+        <div class="carousel-caption text-start">
+            <h1>{{ latest_news.1.title }}</h1>
+             <p><a class="btn btn-lg btn-primary" href="{% url 'news_page' latest_news.1.pk %}">Читать</a></p>
             </div>
+    </div>
         </div>
 
-        <div class="carousel-item">
-            <img src="{{ latest_news.2.image_news.url }}" class="d-block w-100" alt="{{ latest_news.2.title }}">
-            <div class="container">
-                <div class="carousel-caption text-start">
-                    <h1>{{ latest_news.2.title }}</h1>
-                    <p class="opacity-75">{{ latest_news.2.content }}</p>
-                    <p><a class="btn btn-lg btn-primary" href="{% url 'news_page' latest_news.2.pk %}">Читать</a></p>
-                </div>
+        <div class="carousel-item active">
+    <img src="{{ latest_news.2.image_news.url }}" class="d-block w-100" alt="{{ latest_news.2.title }}" width="100%" height="100%">
+    <div class="container">
+        <div class="carousel-caption text-start">
+            <h1>{{ latest_news.2.title }}</h1>
+             <p><a class="btn btn-lg btn-primary" href="{% url 'news_page' latest_news.2.pk %}">Читать</a></p>
             </div>
+    </div>
         </div>
 
     </div> <button
