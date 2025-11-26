@@ -4,19 +4,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def home_page(request):
-    # ---- НАЧАЛО ИЗМЕНЕНИЙ ----
-
-    # Мы изменили этот запрос, чтобы он:
-    # 1. Брал только новости, где есть фото (image_news__isnull=False)
-    # 2. Явно сортировал их от новых к старым
-    # 3. Брал 3 новости для карусели (а не 5)
-
     latest_news = NewsItem.objects.filter(
         is_published=True,
         image_news__isnull=False  # <-- Убеждаемся, что фото есть
     ).order_by('-pub_date')[:3]  # <-- Берем 3
-
-    # ---- КОНЕЦ ИЗМЕНЕНИЙ ----
 
     context = {
         'page_title': 'Главная',
