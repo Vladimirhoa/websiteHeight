@@ -1,21 +1,43 @@
 {% extends "club_core/base.html" %}
 
-{% block title %}{{ coach.name|default:"Тренер не найден" }} - Наш Тренер{% endblock %}
-{% if coach %}
-    {% block content %}
+{% block title %}{{ page_title }}{% endblock %}
 
-        {% for item in coach %}
-        <h1>{{ item.name }}</h1>
-        <h2>Специализация: {{ item.specialty }}</h2>
-        
-        {% if item.image %}
-            <img src="{{ item.image.url }}" alt="Фото тренера {{ item.name }}" style="max-width: 300px; height: auto;">
-        {% endif %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">{{ page_title }}</h1>
 
-        <h3>Биография и Опыт:</h3>
-        <p>{{ item.bio|linebreaksbr }}</p>
+    <div class="row">
+        {% for coach in coaches %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    {% if coach.image %}
+                        {# Для фото людей лучше использовать object-fit: cover, чтобы лицо не искажалось #}
+                        <img src="{{ coach.image.url }}" class="card-img-top" alt="{{ coach.name }}" style="height: 300px; object-fit: cover; object-position: top;">
+                    {% else %}
+                        {# Заглушка, если фото нет #}
+                        <div class="d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
+                            <span class="text-muted">Нет фото</span>
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary">{{ coach.name }}</h5>
+
+                        {# Выводим специализацию жирным шрифтом #}
+                        <h6 class="card-subtitle mb-2 text-muted fw-bold">{{ coach.specialty }}</h6>
+
+                        <p class="card-text mt-2">{{ coach.bio }}</p>
+
+                        {# Кнопку "Подробнее" я убрал, так как пока нет отдельной страницы для каждого тренера. #}
+                        {# Весь текст биографии выводится сразу. #}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p class="text-center alert alert-info">Тренеры пока не добавлены.</p>
+            </div>
         {% endfor %}
-    {% endblock %}
-{% else %}
-        <h1>Информация о тренере пока недоступна.</h1>
-{% endif %}
+    </div>
+</div>
+{% endblock %}

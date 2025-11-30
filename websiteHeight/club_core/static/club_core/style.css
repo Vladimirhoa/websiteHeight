@@ -1,8 +1,10 @@
-
+/* ========================================= */
+/* 1. НАВИГАЦИЯ И МЕНЮ (Navbar)              */
+/* ========================================= */
 
 .bg-custom-blue {
-    /* 1. Устанавливаем темно-синий фон */
-    background-color: #1A237E !important;
+    background-color: #1A237E !important; /* Темно-синий фон */
+    color: white !important;
 }
 
 .bg-custom-blue .navbar-nav .nav-link {
@@ -12,53 +14,149 @@
 .bg-custom-blue .navbar-brand {
     color: white !important;
 }
-.bg-custom-blue {
-    color: white !important;
-}
+
 .navbar-nav .nav-link {
-    /* Используйте желаемый размер, например, 1.1rem (на 10% больше) */
-    font-size: 1.1rem !important;
-
-    /* Убедитесь, что вы НЕ добавляете никаких padding,
-       если хотите увеличить только сам текст. */
-}
-.carousel-item {
-    height: 40vh;
-
-    width: 30vh;
+    font-size: 1.1rem !important; /* Увеличенный шрифт меню */
 }
 
-.carousel-item img {
-  /* 1. Ограничиваем максимальную высоту картинки */
-  /* 60vh = 60% от высоты экрана. Можете поменять на 50vh или 70vh */
-  /*max-height: 60vh;
+/* ========================================= */
+/* 2. НОВОСТИ (Новый дизайн - 3 блока)       */
+/* ========================================= */
 
-  /* 2. (Самое важное) Обрезаем картинку, а не сжимаем ее */
-    object-fit: cover;
+/* Контейнер для новостей */
+.news-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; /* Расстояние между карточками */
+    flex-wrap: wrap; /* Перенос на новую строку на мобильных */
+    margin-bottom: 40px;
+}
 
-  /* 3. Гарантируем, что она всегда 100% по ширине */
-    width: 60%;
+/* Карточка новости */
+.news-card {
+    display: flex;       /* Делаем гибким контейнером */
+    flex-direction: column; /* Элементы внутри (фото, текст) друг под другом */
+    flex: 1 1 300px;     /* Карточка растягивается, но не меньше 300px */
+    background-color: #fff;
+    border-radius: 15px; /* Скругление углов */
+    overflow: hidden;    /* Прячем всё, что вылезает за границы */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Легкая тень */
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавная анимация */
+    border: 1px solid #eee;
+}
 
-  /* (Опционально) Центрируем картинку, если она обрезается */
+/* Эффект при наведении на карточку */
+.news-card:hover {
+    transform: translateY(-10px); /* Карточка всплывает вверх */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2); /* Тень становится больше */
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Фото новости */
+.news-image {
+    width: 100%;
+    height: 250px; /* Фиксированная высота картинки */
+    background-size: cover; /* Картинка заполняет блок */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 4px solid #1A237E; /* Полоска в цвет клуба */
+}
+
+/* Текст новости */
+.news-content {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1; /* Растягивает блок с текстом, чтобы кнопки были на одном уровне */
+}
+
+.news-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: #888;
+    display: block; /* С новой строки */
+    margin-top: 10px;
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 768px) {
+    .news-grid {
+        flex-direction: column; /* Блоки друг под другом */
+    }
+    .news-card {
+        margin-bottom: 20px;
+    }
+}
+/* ========================================= */
+/* 4. СТРАНИЦА НОВОСТИ (Детальная)           */
+/* ========================================= */
+
+.news-detail-card {
+    background: #fff;
+    /* Небольшая анимация появления при загрузке (по желанию) */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Контейнер для фото, чтобы обрезать лишнее, если фото слишком высокое */
+.news-detail-image-container {
+    width: 100%;
+    max-height: 500px; /* Ограничиваем высоту фото, чтобы оно не занимало 2 экрана */
+    overflow: hidden;
+    background-color: #f8f9fa; /* Цвет фона, пока картинка грузится */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Сама картинка */
+.news-detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполняет пространство, сохраняя пропорции */
     object-position: center;
-    transition: opacity .5s ease;
-    opacity: 1;
 }
 
-.carousel-item .carousel-caption {
-    /* Включаем плавный переход для свойства opacity */
-    transition: opacity .5s ease;
-    opacity: 0; /* Начальное состояние: полностью скрыт */
+.news-detail-title {
+    color: #003366; /* Темно-синий цвет заголовка */
 }
 
-/* 3. ЭФФЕКТ ПРИ НАВЕДЕНИИ: При наведении на ВЕСЬ СЛАЙД (.carousel-item:hover) */
-
-/* Заставляем картинку стать полупрозрачной */
-.carousel-item:hover img {
-    opacity: 0.3;
+.news-text {
+    font-size: 1.1rem; /* Чуть увеличенный шрифт для удобства чтения */
+    text-align: justify; /* Выравнивание текста (можно убрать, если не нравится) */
 }
 
-/* Заставляем текст стать полностью видимым */
-.carousel-item:hover .carousel-caption {
-    opacity: 1;
+.news-date-badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Простая анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    .news-detail-image-container {
+        max-height: 300px; /* На телефоне картинка поменьше */
+    }
+    .card-body {
+        padding: 1.5rem !important; /* Уменьшаем отступы внутри карточки */
+    }
+    .news-detail-title {
+        font-size: 1.5rem; /* Шрифт заголовка поменьше */
+    }
 }

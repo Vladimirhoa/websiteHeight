@@ -1,15 +1,41 @@
 {% extends "club_core/base.html" %}
 
-{% block title %}{{ item.title|default:"Заголовок отсутствует" }}{% endblock %}
+{% block title %}{{ item.title }}{% endblock %}
 
 {% block content %}
-    {% if item %}
-        <h1>{{ item.title }}</h1>
-        {% if item.image_news %}
-            <img src="{{ item.image_news.url }}" alt="Фото {{ item.title }}" style="max-width: 300px; height: auto;">
-        {% endif %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow border-0 rounded-4 overflow-hidden news-detail-card">
 
-        <h2>{{ item.content }}</h2>
+                {% if item.image_news %}
+                <div class="news-detail-image-container">
+                    <img src="{{ item.image_news.url }}" alt="{{ item.title }}" class="news-detail-img">
+                </div>
+                {% endif %}
 
-    {% endif %}
+                <div class="card-body p-4 p-md-5">
+
+                    <p class="text-muted mb-3 d-flex align-items-center">
+                        <span class="news-date-badge">{{ item.pub_date|date:"d E Y" }}</span>
+                    </p>
+
+                    <h1 class="fw-bold mb-4 news-detail-title">{{ item.title }}</h1>
+
+                    <hr class="mb-4" style="width: 60px; height: 3px; background-color: #1A237E; opacity: 1;">
+
+                    <div class="news-text lh-lg text-secondary">
+                        {{ item.content|linebreaks }}
+                    </div>
+
+                    <div class="mt-5 pt-3 border-top">
+                        <a href="{% url 'home' %}" class="btn btn-outline-dark rounded-pill px-4">
+                            &larr; Вернуться назад
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

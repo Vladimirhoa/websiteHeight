@@ -3,29 +3,61 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1>Наши Контакты</h1>
-    
-    {% if contact_info %}
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">Свяжитесь с нами</h5>
-                <p><strong>Телефон:</strong> <a href="tel:{{ contact_info.phone }}">{{ contact_info.phone }}</a></p>
-                <p><strong>Email:</strong> <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
-                <p><strong>Адрес:</strong> {{ contact_info.address }}</p>
-            </div>
-        </div>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">{{ page_title }}</h1>
 
-        {% if contact_info.map_link %}
-            <h2>Как нас найти</h2>
-            <a href="{{ contact_info.map_link }}" target="_blank" class="btn btn-primary">
-                Открыть на карте
-            </a>
-        {% endif %}
-    {% else %}
-        <div class="alert alert-warning">
-            Контактная информация пока не добавлена.
+    <div class="row justify-content-center">
+        <div class="col-md-6"> {% if contact_info %}
+                {# Добавил класс bg-light, чтобы фон стал светло-серым #}
+                <div class="card shadow-sm bg-light">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary mb-4">Свяжитесь с нами</h5>
+
+                        <div class="mb-3">
+                            <p class="card-text mb-1 text-muted">Адрес</p>
+                            <p class="h5">{{ contact_info.address }}</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="card-text mb-1 text-muted">Телефон</p>
+                            <p class="h5">
+                                <a href="tel:{{ contact_info.phone }}" class="text-decoration-none text-dark hover-primary">
+                                    {{ contact_info.phone }}
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="card-text mb-1 text-muted">Email</p>
+                            <p class="h5">
+                                <a href="mailto:{{ contact_info.email }}" class="text-decoration-none text-dark">
+                                    {{ contact_info.email }}
+                                </a>
+                            </p>
+                        </div>
+
+                        {# Блок кнопок #}
+                        <div class="d-flex justify-content-center gap-2">
+                            {% if contact_info.map_link %}
+                                <a href="{{ contact_info.map_link }}" target="_blank" class="btn btn-outline-dark bg-white">
+                                    📍 Открыть на карте
+                                </a>
+                            {% endif %}
+
+                            {% if contact_info.vk_link %}
+                                <a href="{{ contact_info.vk_link }}" target="_blank" class="btn btn-outline-dark bg-white">
+                                    Мы ВКонтакте
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p class="text-center alert alert-info">Контактная информация пока не добавлена.</p>
+                </div>
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
 </div>
 {% endblock %}
