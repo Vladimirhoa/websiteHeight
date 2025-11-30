@@ -1,0 +1,24 @@
+
+
+.bg-custom-blue {
+    /* 1. Устанавливаем темно-синий фон */
+    background-color: #1A237E !important;
+}
+
+.bg-custom-blue .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.bg-custom-blue .navbar-brand {
+    color: white !important;
+}
+.bg-custom-blue {
+    color: white !important;
+}
+.navbar-nav .nav-link {
+    /* Используйте желаемый размер, например, 1.1rem (на 10% больше) */
+    font-size: 1.1rem !important;
+
+    /* Убедитесь, что вы НЕ добавляете никаких padding,
+       если хотите увеличить только сам текст. */
+}

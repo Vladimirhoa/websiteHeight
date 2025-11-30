@@ -1,0 +1,20 @@
+# Виртуальное окружение
+venv/
+.venv/
+
+# База данных и логи
+*.sqlite3
+*.log
+
+# Файлы PyCharm
+.idea/
+
+
+
+# Скомпилированные файлы Python
+__pycache__/
+*.pyc
+
+media/
+
+.env

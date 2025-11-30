@@ -1,0 +1,370 @@
+[2025-10-26 16:21:03 +0200] [717037] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 16:21:03 +0200] [717037] [INFO] Listening at: http://0.0.0.0:8000 (717037)
+[2025-10-26 16:21:03 +0200] [717037] [INFO] Using worker: sync
+[2025-10-26 16:21:03 +0200] [717038] [INFO] Booting worker with pid: 717038
+[2025-10-26 16:21:03 +0200] [717038] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1128, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1142, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'websiteHeight'
+[2025-10-26 16:21:03 +0200] [717038] [INFO] Worker exiting (pid: 717038)
+[2025-10-26 16:21:03 +0200] [717037] [ERROR] Worker (pid:717038) exited with code 3
+[2025-10-26 16:21:03 +0200] [717037] [ERROR] Shutting down: Master
+[2025-10-26 16:21:03 +0200] [717037] [ERROR] Reason: Worker failed to boot.
+[2025-10-26 16:23:36 +0200] [717494] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 16:23:36 +0200] [717494] [INFO] Listening at: http://0.0.0.0:8000 (717494)
+[2025-10-26 16:23:36 +0200] [717494] [INFO] Using worker: sync
+[2025-10-26 16:23:36 +0200] [717495] [INFO] Booting worker with pid: 717495
+[2025-10-26 16:23:36 +0200] [717495] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1128, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1142, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'websiteHeight'
+[2025-10-26 16:23:36 +0200] [717495] [INFO] Worker exiting (pid: 717495)
+[2025-10-26 16:23:36 +0200] [717494] [ERROR] Worker (pid:717495) exited with code 3
+[2025-10-26 16:23:36 +0200] [717494] [ERROR] Shutting down: Master
+[2025-10-26 16:23:36 +0200] [717494] [ERROR] Reason: Worker failed to boot.
+[2025-10-26 16:37:00 +0200] [717956] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 16:37:00 +0200] [717956] [INFO] Listening at: http://0.0.0.0:8000 (717956)
+[2025-10-26 16:37:00 +0200] [717956] [INFO] Using worker: sync
+[2025-10-26 16:37:00 +0200] [717957] [INFO] Booting worker with pid: 717957
+[2025-10-26 16:37:00 +0200] [717957] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1128, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1142, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'websiteHeight'
+[2025-10-26 16:37:00 +0200] [717957] [INFO] Worker exiting (pid: 717957)
+[2025-10-26 16:37:00 +0200] [717956] [ERROR] Worker (pid:717957) exited with code 3
+[2025-10-26 16:37:00 +0200] [717956] [ERROR] Shutting down: Master
+[2025-10-26 16:37:00 +0200] [717956] [ERROR] Reason: Worker failed to boot.
+[2025-10-26 16:57:25 +0200] [718216] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 16:57:25 +0200] [718216] [INFO] Listening at: http://0.0.0.0:8000 (718216)
+[2025-10-26 16:57:25 +0200] [718216] [INFO] Using worker: sync
+[2025-10-26 16:57:25 +0200] [718217] [INFO] Booting worker with pid: 718217
+[2025-10-26 16:57:33 +0200] [718219] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 16:57:33 +0200] [718219] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:57:33 +0200] [718219] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:57:34 +0200] [718219] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:57:34 +0200] [718219] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:57:35 +0200] [718219] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:57:35 +0200] [718219] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:57:36 +0200] [718219] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:57:36 +0200] [718219] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:57:37 +0200] [718219] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:57:37 +0200] [718219] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:57:38 +0200] [718219] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2025-10-26 16:57:59 +0200] [718222] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 16:57:59 +0200] [718222] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:57:59 +0200] [718222] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:58:00 +0200] [718222] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:58:00 +0200] [718222] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:58:01 +0200] [718222] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:58:01 +0200] [718222] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:58:02 +0200] [718222] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:58:02 +0200] [718222] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:58:03 +0200] [718222] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-10-26 16:58:03 +0200] [718222] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-10-26 16:58:04 +0200] [718222] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2025-10-26 17:05:46 +0200] [718276] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 17:05:46 +0200] [718276] [INFO] Listening at: http://0.0.0.0:8000 (718276)
+[2025-10-26 17:05:46 +0200] [718276] [INFO] Using worker: sync
+[2025-10-26 17:05:46 +0200] [718277] [INFO] Booting worker with pid: 718277
+[2025-10-26 17:05:46 +0200] [718277] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/websiteHeight/mywebsite/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 81, in __getattr__
+    self._setup(name)
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/websiteHeight/mywebsite/settings.py", line 1
+    """
+    ^
+SyntaxError: invalid non-printable character U+0083
+[2025-10-26 17:05:46 +0200] [718277] [INFO] Worker exiting (pid: 718277)
+[2025-10-26 17:05:46 +0200] [718276] [ERROR] Worker (pid:718277) exited with code 3
+[2025-10-26 17:05:46 +0200] [718276] [ERROR] Shutting down: Master
+[2025-10-26 17:05:46 +0200] [718276] [ERROR] Reason: Worker failed to boot.
+[2025-10-26 17:08:08 +0200] [718290] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 17:08:08 +0200] [718290] [INFO] Listening at: http://0.0.0.0:8000 (718290)
+[2025-10-26 17:08:08 +0200] [718290] [INFO] Using worker: sync
+[2025-10-26 17:08:08 +0200] [718291] [INFO] Booting worker with pid: 718291
+[2025-10-26 17:08:08 +0200] [718291] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/websiteHeight/mywebsite/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 81, in __getattr__
+    self._setup(name)
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/websiteHeight/mywebsite/settings.py", line 1
+    """
+    ^
+SyntaxError: invalid non-printable character U+0083
+[2025-10-26 17:08:08 +0200] [718291] [INFO] Worker exiting (pid: 718291)
+[2025-10-26 17:08:08 +0200] [718290] [ERROR] Worker (pid:718291) exited with code 3
+[2025-10-26 17:08:08 +0200] [718290] [ERROR] Shutting down: Master
+[2025-10-26 17:08:08 +0200] [718290] [ERROR] Reason: Worker failed to boot.
+[2025-10-26 17:08:26 +0200] [718293] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 17:08:26 +0200] [718293] [INFO] Listening at: http://0.0.0.0:8000 (718293)
+[2025-10-26 17:08:26 +0200] [718293] [INFO] Using worker: sync
+[2025-10-26 17:08:26 +0200] [718294] [INFO] Booting worker with pid: 718294
+[2025-10-26 17:08:26 +0200] [718294] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+    worker.init_process()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 135, in init_process
+    self.load_wsgi()
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/base.py", line 66, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 57, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/websiteHeight/mywebsite/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 81, in __getattr__
+    self._setup(name)
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/websiteHeight/venv/lib/python3.11/site-packages/django/conf/__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1074, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1004, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/root/websiteHeight/mywebsite/settings.py", line 1
+    """
+    ^
+SyntaxError: invalid non-printable character U+0083
+[2025-10-26 17:08:26 +0200] [718294] [INFO] Worker exiting (pid: 718294)
+[2025-10-26 17:08:26 +0200] [718293] [ERROR] Worker (pid:718294) exited with code 3
+[2025-10-26 17:08:26 +0200] [718293] [ERROR] Shutting down: Master
+[2025-10-26 17:08:26 +0200] [718293] [ERROR] Reason: Worker failed to boot.
+[2025-10-26 17:24:19 +0200] [718569] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 17:24:19 +0200] [718569] [INFO] Listening at: http://0.0.0.0:8000 (718569)
+[2025-10-26 17:24:19 +0200] [718569] [INFO] Using worker: sync
+[2025-10-26 17:24:19 +0200] [718570] [INFO] Booting worker with pid: 718570
+[2025-10-26 17:36:07 +0200] [718704] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 17:36:07 +0200] [718704] [INFO] Listening at: http://0.0.0.0:8000 (718704)
+[2025-10-26 17:36:07 +0200] [718704] [INFO] Using worker: sync
+[2025-10-26 17:36:07 +0200] [718705] [INFO] Booting worker with pid: 718705
+[2025-10-26 17:48:56 +0200] [718863] [INFO] Starting gunicorn 23.0.0
+[2025-10-26 17:48:56 +0200] [718863] [INFO] Listening at: http://0.0.0.0:8000 (718863)
+[2025-10-26 17:48:56 +0200] [718863] [INFO] Using worker: sync
+[2025-10-26 17:48:56 +0200] [718864] [INFO] Booting worker with pid: 718864
+[2025-10-26 15:50:19 +0000] [718864] [INFO] Worker exiting (pid: 718864)
+[2025-10-26 17:50:19 +0200] [718863] [INFO] Handling signal: term
+[2025-10-26 17:50:19 +0200] [718863] [INFO] Shutting down: Master

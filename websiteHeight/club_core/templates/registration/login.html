@@ -1,0 +1,57 @@
+{% extends "club_core/base.html" %}
+
+{% block title %}Вход в систему{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">Вход для пользователей</h3>
+                </div>
+                <div class="card-body">
+                    
+                    {% if form.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            Ваш логин или пароль неверны. Пожалуйста, попробуйте еще раз.
+                        </div>
+                    {% endif %}
+
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        
+                        {% for field in form.hidden_fields %}
+                            {{ field }}
+                        {% endfor %}
+
+                        {% for field in form.visible_fields %}
+                            <div class="mb-3">
+                                {{ field.label_tag }}
+                                {{ field }} 
+                                {% if field.errors %}
+                                    <small class="text-danger">{{ field.errors }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success mt-3">Войти</button>
+                        </div>
+                        
+                        <p class="text-center mt-3">
+                            <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+                        </p>
+                    </form>
+                    
+                </div>
+            </div>
+            
+            <p class="text-center mt-3">
+                Ещё нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+            </p>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+
+
+.bg-custom-blue {
+    /* 1. Устанавливаем темно-синий фон */
+    background-color: #1A237E !important;
+}
+
+.bg-custom-blue .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.bg-custom-blue .navbar-brand {
+    color: white !important;
+}
+.bg-custom-blue {
+    color: white !important;
+}
+.navbar-nav .nav-link {
+    /* Используйте желаемый размер, например, 1.1rem (на 10% больше) */
+    font-size: 1.1rem !important;
+
+    /* Убедитесь, что вы НЕ добавляете никаких padding,
+       если хотите увеличить только сам текст. */
+}
+.carousel-item {
+    height: 40vh;
+
+    width: 30vh;
+}
+
+.carousel-item img {
+  /* 1. Ограничиваем максимальную высоту картинки */
+  /* 60vh = 60% от высоты экрана. Можете поменять на 50vh или 70vh */
+  /*max-height: 60vh;
+
+  /* 2. (Самое важное) Обрезаем картинку, а не сжимаем ее */
+    object-fit: cover;
+
+  /* 3. Гарантируем, что она всегда 100% по ширине */
+    width: 60%;
+
+  /* (Опционально) Центрируем картинку, если она обрезается */
+    object-position: center;
+    transition: opacity .5s ease;
+    opacity: 1;
+}
+
+.carousel-item .carousel-caption {
+    /* Включаем плавный переход для свойства opacity */
+    transition: opacity .5s ease;
+    opacity: 0; /* Начальное состояние: полностью скрыт */
+}
+
+/* 3. ЭФФЕКТ ПРИ НАВЕДЕНИИ: При наведении на ВЕСЬ СЛАЙД (.carousel-item:hover) */
+
+/* Заставляем картинку стать полупрозрачной */
+.carousel-item:hover img {
+    opacity: 0.3;
+}
+
+/* Заставляем текст стать полностью видимым */
+.carousel-item:hover .carousel-caption {
+    opacity: 1;
+}
