@@ -6,9 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '93.175.13.6', 
-    'localhost', 
-    '127.0.0.1', 
+    '93.175.13.6',
+    'localhost',
+    '127.0.0.1',
     'vkvysota.ru',
     'www.vkvysota.ru',
 ]
