@@ -1,40 +1,110 @@
 {% extends "club_core/base.html" %}
 
-{% block title %}{{ item.title }}{% endblock %}
+{% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card shadow border-0 rounded-4 overflow-hidden news-detail-card">
+        <div class="col-lg-8">
+
+            {# --- Блок новости --- #}
+            <article class="mb-5">
+                <h1 class="fw-bold mb-3">{{ item.title }}</h1>
+                <div class="text-muted mb-4 fst-italic">
+                    Опубликовано: {{ item.pub_date|date:"d E Y" }}
+                </div>
 
                 {% if item.image_news %}
-                <div class="news-detail-image-container">
-                    <img src="{{ item.image_news.url }}" alt="{{ item.title }}" class="news-detail-img">
-                </div>
+                    <img src="{{ item.image_news.url }}" class="img-fluid rounded mb-4 w-100" style="max-height: 500px; object-fit: cover;" alt="{{ item.title }}">
                 {% endif %}
 
-                <div class="card-body p-4 p-md-5">
+                <div class="fs-5 mb-5" style="white-space: pre-wrap;">{{ item.content }}</div>
 
-                    <p class="text-muted mb-3 d-flex align-items-center">
-                        <span class="news-date-badge">{{ item.pub_date|date:"d E Y" }}</span>
-                    </p>
+                <hr>
 
-                    <h1 class="fw-bold mb-4 news-detail-title">{{ item.title }}</h1>
-
-                    <hr class="mb-4" style="width: 60px; height: 3px; background-color: #1A237E; opacity: 1;">
-
-                    <div class="news-text lh-lg text-secondary">
-                        {{ item.content|linebreaks }}
-                    </div>
-
-                    <div class="mt-5 pt-3 border-top">
-                        <a href="{% url 'home' %}" class="btn btn-outline-dark rounded-pill px-4">
-                            &larr; Вернуться назад
+                {# --- Блок Лайков --- #}
+                <div class="d-flex align-items-center mb-4">
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'news_like' item.pk %}" method="POST">
+                            {% csrf_token %}
+                            {% if is_liked %}
+                                <button type="submit" class="btn btn-danger">
+                                    ❤️ Понравилось ({{ total_likes }})
+                                </button>
+                            {% else %}
+                                <button type="submit" class="btn btn-outline-danger">
+                                    🤍 Мне нравится ({{ total_likes }})
+                                </button>
+                            {% endif %}
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-outline-secondary">
+                            🤍 Войдите, чтобы лайкнуть ({{ total_likes }})
                         </a>
+                    {% endif %}
+                </div>
+            </article>
+
+            {# --- Блок Комментариев --- #}
+            <section class="mb-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+
+                        {# Форма добавления комментария #}
+                        <h3 class="mb-4">Комментарии ({{ comments.count }})</h3>
+
+                        {% if user.is_authenticated %}
+                            <form method="POST" class="mb-4">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    {{ comment_form.text }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+                            </form>
+                        {% else %}
+                            <div class="alert alert-info">
+                                Хотите оставить комментарий? <a href="{% url 'register' %}" class="fw-bold text-decoration-none">Зарегистрируйтесь</a> или <a href="{% url 'login' %}?next={{ request.path }}" class="fw-bold text-decoration-none">войдите</a>.
+                            </div>
+                        {% endif %}
+
+{# Список комментариев #}
+{% for comment in comments %}
+    <div class="d-flex mb-4">
+        <div class="flex-shrink-0">
+            {# Аватарка-заглушка с первой буквой имени #}
+            <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                {{ comment.author.username|first|upper }}
+            </div>
+        </div>
+        <div class="ms-3 w-100">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="fw-bold">
+                    {{ comment.author.username }}
+                    <span class="text-muted fw-normal small ms-2">{{ comment.created_date|date:"d.m.Y H:i" }}</span>
+                </div>
+
+                {# --- БЛОК УДАЛЕНИЯ КОММЕНТАРИЯ --- #}
+                {% if user.is_authenticated and user.is_superuser or user.is_authenticated and user == comment.author %}
+                    <a href="{% url 'comment_delete' pk=comment.pk %}" class="text-danger small text-decoration-none" title="Удалить комментарий">
+                        ✖ Удалить
+                    </a>
+                {% endif %}
+                {# --------------------------------- #}
+            </div>
+
+            <div class="bg-white p-3 rounded mt-1 shadow-sm border">
+                {{ comment.text|linebreaks }}
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p class="text-muted fst-italic">Будьте первым, кто оставит комментарий!</p>
+{% endfor %}
+
                     </div>
                 </div>
-            </div>
+            </section>
+
         </div>
     </div>
 </div>

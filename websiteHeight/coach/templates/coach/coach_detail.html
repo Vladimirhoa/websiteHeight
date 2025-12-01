@@ -4,40 +4,156 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">{{ page_title }}</h1>
+    <h1 class="mb-5 text-center fw-bold text-primary">{{ page_title }}</h1>
 
-    <div class="row">
-        {% for coach in coaches %}
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
-                    {% if coach.image %}
-                        {# Для фото людей лучше использовать object-fit: cover, чтобы лицо не искажалось #}
-                        <img src="{{ coach.image.url }}" class="card-img-top" alt="{{ coach.name }}" style="height: 300px; object-fit: cover; object-position: top;">
-                    {% else %}
-                        {# Заглушка, если фото нет #}
-                        <div class="d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
-                            <span class="text-muted">Нет фото</span>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            {% for coach in coaches %}
+                <div class="card coach-card border-0 shadow-lg mb-4 overflow-hidden rounded-4">
+                    <div class="row g-0 align-items-start"> {# Фотография: фиксированная высота #}
+                        <div class="col-md-5 col-lg-4">
+                            <div class="coach-image-container">
+                                {% if coach.image %}
+                                    <img src="{{ coach.image.url }}" class="img-fluid object-fit-cover w-100 h-100" alt="{{ coach.name }}">
+                                {% else %}
+                                    <div class="d-flex align-items-center justify-content-center bg-light w-100 h-100">
+                                        <span class="text-muted fs-5">Нет фото</span>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endif %}
 
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-primary">{{ coach.name }}</h5>
+                        {# Информация #}
+                        <div class="col-md-7 col-lg-8">
+                            <div class="card-body p-4">
+                                <div class="mb-2">
+                                    <h2 class="card-title text-dark fw-bold d-inline-block me-2">{{ coach.name }}</h2>
+                                    <span class="badge bg-primary fs-6 fw-normal rounded-pill align-text-bottom">
+                                        {{ coach.specialty }}
+                                    </span>
+                                </div>
 
-                        {# Выводим специализацию жирным шрифтом #}
-                        <h6 class="card-subtitle mb-2 text-muted fw-bold">{{ coach.specialty }}</h6>
+                                {# Блок с биографией #}
+                                {# Класс bio-wrapper нужен для JS вычислений #}
+                                <div class="bio-wrapper position-relative">
+                                    <div class="bio-content text-clamp mb-3">
+                                        <p class="card-text text-secondary fs-5 m-0" style="line-height: 1.6;">
+                                            {{ coach.bio }}
+                                        </p>
+                                    </div>
+                                </div>
 
-                        <p class="card-text mt-2">{{ coach.bio }}</p>
+                                {# Кнопка Подробнее. Скрыта по умолчанию (display: none), пока JS не проверит текст #}
+                                <div class="mt-2 text-end"> <button class="btn btn-outline-primary btn-sm rounded-pill px-4 toggle-btn"
+                                            style="display: none;"
+                                            onclick="toggleBio(this)">
+                                        Подробнее
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                        {# Кнопку "Подробнее" я убрал, так как пока нет отдельной страницы для каждого тренера. #}
-                        {# Весь текст биографии выводится сразу. #}
                     </div>
                 </div>
-            </div>
-        {% empty %}
-            <div class="col-12">
-                <p class="text-center alert alert-info">Тренеры пока не добавлены.</p>
-            </div>
-        {% endfor %}
+            {% empty %}
+                <div class="alert alert-info text-center shadow-sm">
+                    Тренеры пока не добавлены.
+                </div>
+            {% endfor %}
+
+        </div>
     </div>
 </div>
+
+<style>
+    /* Стили для карточки */
+    .coach-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #fff;
+    }
+    .coach-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.15) !important;
+    }
+
+    /* Контейнер для фото с фиксированной высотой */
+    .coach-image-container {
+        height: 320px; /* Фиксированная высота картинки. Она не изменится при раскрытии текста. */
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* На мобильных можно сделать картинку чуть меньше */
+    @media (max-width: 767px) {
+        .coach-image-container {
+            height: 250px;
+        }
+    }
+
+    /* Обрезка текста */
+    .text-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Показывать только 3 строки */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Класс для развернутого текста */
+    .text-expanded {
+        display: block;
+        -webkit-line-clamp: unset;
+        overflow: visible;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Проходимся по всем карточкам при загрузке страницы
+        const cards = document.querySelectorAll('.card-body');
+
+        cards.forEach(card => {
+            const content = card.querySelector('.bio-content');
+            const btn = card.querySelector('.toggle-btn');
+
+            if (content && btn) {
+                // scrollHeight - полная высота текста
+                // clientHeight - высота видимой части (эти самые 3 строки)
+
+                // Если реальный текст больше видимой области (с небольшим запасом 2px на погрешность)
+                if (content.scrollHeight > content.clientHeight + 2) {
+                    btn.style.display = 'inline-block'; // Показываем кнопку
+                } else {
+                    btn.style.display = 'none'; // Текста мало, кнопка не нужна
+                }
+            }
+        });
+    });
+
+    function toggleBio(button) {
+        const cardBody = button.closest('.card-body');
+        const bioContent = cardBody.querySelector('.bio-content');
+
+        if (bioContent.classList.contains('text-clamp')) {
+            // РАЗВОРАЧИВАЕМ
+            bioContent.classList.remove('text-clamp');
+            bioContent.classList.add('text-expanded');
+            button.textContent = "Свернуть";
+            // Меняем стиль кнопки на более активный
+            button.classList.remove('btn-outline-primary');
+            button.classList.add('btn-primary');
+        } else {
+            // СВОРАЧИВАЕМ
+            bioContent.classList.remove('text-expanded');
+            bioContent.classList.add('text-clamp');
+            button.textContent = "Подробнее";
+            // Возвращаем стиль кнопки
+            button.classList.add('btn-outline-primary');
+            button.classList.remove('btn-primary');
+
+            // Опционально: можно прокрутить страницу немного вверх к началу карточки, если текст был очень длинным
+            // button.closest('.coach-card').scrollIntoView({behavior: "smooth", block: "center"});
+        }
+    }
+</script>
 {% endblock %}
