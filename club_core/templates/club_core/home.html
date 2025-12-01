@@ -1,0 +1,31 @@
+{% extends 'club_core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-section text-center p-5">
+    <h1 class="display-4">Добро пожаловать в ВК "Высота"</h1>
+    <p class="lead">Спортивный клуб для тех, кто стремится к вершинам.</p>
+</section>
+
+<section class="latest-news-section container my-5">
+    <h2 class="text-center mb-5" style="color: #003366;">Последние новости</h2>
+
+    <div class="news-grid">
+        {% for item in latest_news %}
+        <a href="{% url 'news_page' item.pk %}" class="news-card">
+            <div class="news-image" style="background-image: url('{{ item.image_news.url }}');"></div>
+
+            <div class="news-content">
+                <h3 class="news-title">{{ item.title }}</h3>
+                <span class="news-date">{{ item.pub_date|date:"d.m.Y" }}</span>
+            </div>
+        </a>
+        {% empty %}
+        <p class="text-center">Новостей пока нет.</p>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}

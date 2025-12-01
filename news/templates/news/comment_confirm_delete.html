@@ -1,0 +1,19 @@
+{% extends "club_core/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Подтверждение удаления комментария</h2>
+
+        <p>Вы уверены, что хотите удалить комментарий от <strong>{{ object.author.username }}</strong> к новости "{{ object.post.title }}"?</p>
+        
+        <blockquote class="blockquote">
+            <p>{{ object.text }}</p>
+        </blockquote>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Да, удалить</button>
+            <a href="{% url 'news_page' pk=object.post.pk %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+{% endblock %}
