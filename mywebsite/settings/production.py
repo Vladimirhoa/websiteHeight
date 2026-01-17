@@ -1,7 +1,9 @@
+# mywebsite/settings/production.py
+
 from .base import *
-from pathlib import Path
-import os
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# BASE_DIR уже корректно определен в base.py, но можно оставить переопределение,
+# если оно совпадает (3 parent). Если в base.py исправили, здесь строку с BASE_DIR можно удалить.
+
 # 1. Безопасность
 DEBUG = False
 
@@ -9,12 +11,12 @@ ALLOWED_HOSTS = [
     '93.175.13.6',
     'localhost',
     '127.0.0.1',
+    '192.168.31.129',  # <--- ДОБАВЛЕНО: Ваш локальный IP
     'vkvysota.ru',
     'www.vkvysota.ru',
 ]
 
-# 2. База данных (PostgreSQL)
-# Мы настраивали Postgres, поэтому используем этот движок и твои данные
+# 2. База данных
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -26,27 +28,34 @@ DATABASES = {
     }
 }
 
-# 3. Настройка WhiteNoise (статика)
-# Добавляем WhiteNoise в начало списка приложений
-INSTALLED_APPS.insert(0, 'whitenoise.runserver_nostatic')
+# 3. WhiteNoise (Статика)
+try:
+    # Проверка, чтобы не дублировать при перезагрузках
+    if 'whitenoise.runserver_nostatic' not in INSTALLED_APPS:
+        INSTALLED_APPS.insert(0, 'whitenoise.runserver_nostatic')
+    if 'whitenoise.middleware.WhiteNoiseMiddleware' not in MIDDLEWARE:
+        MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+except ValueError:
+    pass
 
-# Добавляем WhiteNoiseMiddleware после SecurityMiddleware
-# (SecurityMiddleware обычно идет первым элементом с индексом 0)
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-
-# 4. Пути к статике
+# 4. Пути
 import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# 5. HTTPS настройки (раскомментируй, когда подключишь SSL сертификат)
-# CSRF_TRUSTED_ORIGINS = ['https://vkvysota.ru']
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True          # Перенаправлять всех на HTTPS
-SESSION_COOKIE_SECURE = True        # Куки только через HTTPS
-CSRF_COOKIE_SECURE = True           # CSRF-токен только через HTTPS
+# 5. HTTPS и Cloudflare
+# ВАЖНО: Эта настройка говорит Django доверять заголовку X-Forwarded-Proto от прокси (Nginx/Cloudflare)
+# Без этого SECURE_SSL_REDIRECT вызовет циклическую переадресацию.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 CSRF_TRUSTED_ORIGINS = [
-    'https://vkvysota.ru'
+    'https://vkvysota.ru',
+    'https://www.vkvysota.ru', # <--- Рекомендуется добавить версию с www
+    'http://192.168.31.129',   # Для доступа по локальной сети (без https) может потребоваться
+                               # отключить SECURE_SSL_REDIRECT или добавить исключения.
+                               # Но Cloudflare работает по домену.
 ]
