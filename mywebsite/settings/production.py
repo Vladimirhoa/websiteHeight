@@ -3,7 +3,10 @@
 from .base import *
 # BASE_DIR уже корректно определен в base.py, но можно оставить переопределение,
 # если оно совпадает (3 parent). Если в base.py исправили, здесь строку с BASE_DIR можно удалить.
-
+from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # 1. Безопасность
 DEBUG = False
 
@@ -14,6 +17,7 @@ ALLOWED_HOSTS = [
     '192.168.31.129',  # <--- ДОБАВЛЕНО: Ваш локальный IP
     'vkvysota.ru',
     'www.vkvysota.ru',
+    '192.168.31.129',
 ]
 
 # 2. База данных
@@ -22,7 +26,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'websiteheight_db',
         'USER': 'volodimir',
-        'PASSWORD': '5679867',
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
     }
