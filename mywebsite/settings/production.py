@@ -10,25 +10,17 @@ load_dotenv()
 # 1. Безопасность
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    '93.175.13.6',
-    'localhost',
-    '127.0.0.1',
-    '192.168.31.129',  # <--- ДОБАВЛЕНО: Ваш локальный IP
-    'vkvysota.ru',
-    'www.vkvysota.ru',
-    '192.168.31.129',
-]
+ALLOWED_HOSTS = ['*']
 
 # 2. База данных
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'websiteheight_db',
-        'USER': 'volodimir',
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.getenv('DB_NAME', 'websiteheight_db'),
+        'USER': os.getenv('DB_USER', 'volodimir'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'mysecretpassword'),
+        'HOST': os.getenv('DB_HOST', 'localhost'), 
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
