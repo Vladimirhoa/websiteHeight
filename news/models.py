@@ -1,16 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User  # Импортируем модель пользователя
-
+from django.utils import timezone
 
 class NewsItem(models.Model):
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     content = models.TextField(verbose_name="Содержание")
-    pub_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации")
+    pub_date = models.DateTimeField(default=timezone.now, verbose_name="Дата публикации")
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
     image_news = models.ImageField(upload_to='news', blank=True, null=True, verbose_name="Фото для новости")
 
     # Новое поле: Лайки (Многие пользователи могут лайкнуть одну новость)
     likes = models.ManyToManyField(User, related_name='news_likes', blank=True)
+
+    vk_id = models.BigIntegerField(unique=True, null=True, blank=True, verbose_name="ID поста VK")
 
     class Meta:
         verbose_name = "Новость"
@@ -39,3 +41,17 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Комментарий от {self.author.username} к {self.post.title}"
+
+
+
+
+class NewsImage(models.Model):
+    news = models.ForeignKey(NewsItem, default=None, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='news_gallery', verbose_name="Фотография")
+
+    class Meta:
+        verbose_name = "Фотография"
+        verbose_name_plural = "Фотографии галереи"
+
+    def __str__(self):
+        return f"Фото для {self.news.title}"

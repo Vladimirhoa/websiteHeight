@@ -4,27 +4,28 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def home_page(request):
-    # ---- НАЧАЛО ИЗМЕНЕНИЙ ----
-
-    # Мы изменили этот запрос, чтобы он:
-    # 1. Брал только новости, где есть фото (image_news__isnull=False)
-    # 2. Явно сортировал их от новых к старым
-    # 3. Брал 3 новости для карусели (а не 5)
-
-    latest_news = NewsItem.objects.filter(
+    # 1. Новости для карусели (только с картинками, 3 самые свежие)
+    carousel_news = NewsItem.objects.filter(
         is_published=True,
-        image_news__isnull=False  # <-- Убеждаемся, что фото есть
-    ).order_by('-pub_date')[:3]  # <-- Берем 3
+        image_news__isnull=False
+    ).order_by('-pub_date')[:3]
 
-    # ---- КОНЕЦ ИЗМЕНЕНИЙ ----
+    # Собираем ID новостей, попавших в карусель, чтобы исключить их из общего списка
+    # (чтобы не дублировать новость и в карусели, и в списке снизу)
+    carousel_ids = [news.id for news in carousel_news]
+
+    # 2. Все остальные новости (бесконечная лента)
+    # Берем все опубликованные и исключаем (exclude) те, что уже в карусели
+    other_news = NewsItem.objects.filter(
+        is_published=True
+    ).exclude(id__in=carousel_ids).order_by('-pub_date')
 
     context = {
         'page_title': 'Главная',
-        'latest_news': latest_news,  # Эта переменная теперь содержит 3 новости с фото
+        'carousel_news': carousel_news, # Передаем топ-3
+        'other_news': other_news,       # Передаем всё остальное
     }
     return render(request, 'club_core/home.html', context)
-
-
 #
 # Эту функцию мы не трогали, она остается как была
 #

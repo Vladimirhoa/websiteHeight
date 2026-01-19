@@ -8,13 +8,64 @@
     <p class="lead">Спортивный клуб для тех, кто стремится к вершинам.</p>
 </section>
 
+{# --- 1. БЛОК КАРУСЕЛИ (Только если есть новости для неё) --- #}
+{% if carousel_news %}
+<section class="container mb-5">
+    <h2 class="text-center mb-4" style="color: #003366;">Главное</h2>
+
+    <div id="newsCarousel" class="carousel slide rounded shadow overflow-hidden" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for item in carousel_news %}
+            <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}" aria-current="true"></button>
+            {% endfor %}
+        </div>
+
+        <div class="carousel-inner">
+            {% for item in carousel_news %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height: 500px;">
+                <img src="{{ item.image_news.url }}" class="d-block w-100 h-100" style="object-fit: cover;" alt="{{ item.title }}">
+
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+                    <h3 class="fw-bold text-white mb-0">{{ item.title }}</h3>
+                    <p class="text-light mb-2">{{ item.pub_date|date:"d E Y" }}</p>
+                    <a href="{% url 'news_page' item.pk %}" class="btn btn-sm btn-primary stretched-link">Читать далее</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущая</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующая</span>
+        </button>
+    </div>
+</section>
+{% endif %}
+
+{# --- 2. БЛОК ВСЕХ ОСТАЛЬНЫХ НОВОСТЕЙ --- #}
 <section class="latest-news-section container my-5">
-    <h2 class="text-center mb-5" style="color: #003366;">Последние новости</h2>
+    <h2 class="text-center mb-5" style="color: #003366;">Лента новостей</h2>
 
     <div class="news-grid">
-        {% for item in latest_news %}
+        {% for item in other_news %}
         <a href="{% url 'news_page' item.pk %}" class="news-card">
-            <div class="news-image" style="background-image: url('{{ item.image_news.url }}');"></div>
+
+            <div class="news-image"
+                 {% if item.image_news %}
+                    style="background-image: url('{{ item.image_news.url }}');"
+                 {% else %}
+                    {# Если у старой новости нет картинки, ставим серый фон #}
+                    style="background-color: #e9ecef; display: flex; align-items: center; justify-content: center;"
+                 {% endif %}>
+                 {% if not item.image_news %}
+                    <span class="text-muted small">Без фото</span>
+                 {% endif %}
+            </div>
 
             <div class="news-content">
                 <h3 class="news-title">{{ item.title }}</h3>
@@ -22,7 +73,9 @@
             </div>
         </a>
         {% empty %}
-        <p class="text-center">Новостей пока нет.</p>
+            {% if not carousel_news %}
+                <p class="text-center">Новостей пока нет.</p>
+            {% endif %}
         {% endfor %}
     </div>
 

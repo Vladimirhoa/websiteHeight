@@ -19,7 +19,35 @@
                 {% endif %}
 
                 <div class="fs-5 mb-5" style="white-space: pre-wrap;">{{ item.content }}</div>
+                 {# --- БЛОК ГАЛЕРЕИ --- #}
+{% if item.images.all %}
+<div class="gallery-section mb-5">
+    <!-- <h3 class="mb-4">Фотогалерея</h3> -->
+    <div class="row">
+        {% for photo in item.images.all %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="{{ photo.image.url }}" class="card-img-top" alt="Фото к новости"
+                     style="height: 250px; object-fit: cover; cursor: pointer;"
+                     data-bs-toggle="modal" data-bs-target="#photoModal{{ forloop.counter }}">
+            </div>
 
+            <div class="modal fade" id="photoModal{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3 bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <img src="{{ photo.image.url }}" class="w-100 rounded" alt="Фото">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{# --------------------- #}
                 <hr>
 
                 {# --- Блок Лайков --- #}

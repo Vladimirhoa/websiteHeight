@@ -20,37 +20,37 @@
 }
 
 /* ========================================= */
-/* 2. НОВОСТИ (Новый дизайн - 3 блока)       */
+/* 2. НОВОСТИ (Новый дизайн - сетка)         */
 /* ========================================= */
 
 /* Контейнер для новостей */
 .news-grid {
-    display: flex;
-    justify-content: space-between;
+    display: grid; /* Включаем режим сетки (Grid) */
+    /* Магия: создаем столько колонок по 300px+, сколько влезает в экран */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px; /* Расстояние между карточками */
-    flex-wrap: wrap; /* Перенос на новую строку на мобильных */
     margin-bottom: 40px;
 }
 
 /* Карточка новости */
 .news-card {
-    display: flex;       /* Делаем гибким контейнером */
-    flex-direction: column; /* Элементы внутри (фото, текст) друг под другом */
-    flex: 1 1 300px;     /* Карточка растягивается, но не меньше 300px */
+    display: flex;
+    flex-direction: column;
+    /* flex: 1 1 300px;  <--- ЭТУ СТРОКУ МЫ УБРАЛИ, чтобы карточка не растягивалась сама */
     background-color: #fff;
-    border-radius: 15px; /* Скругление углов */
-    overflow: hidden;    /* Прячем всё, что вылезает за границы */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Легкая тень */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-decoration: none;
     color: inherit;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавная анимация */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #eee;
 }
 
 /* Эффект при наведении на карточку */
 .news-card:hover {
-    transform: translateY(-10px); /* Карточка всплывает вверх */
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2); /* Тень становится больше */
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     text-decoration: none;
     color: inherit;
 }
@@ -58,18 +58,18 @@
 /* Фото новости */
 .news-image {
     width: 100%;
-    height: 250px; /* Фиксированная высота картинки */
-    background-size: cover; /* Картинка заполняет блок */
+    height: 250px;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-bottom: 4px solid #1A237E; /* Полоска в цвет клуба */
+    border-bottom: 4px solid #1A237E;
 }
 
 /* Текст новости */
 .news-content {
     padding: 20px;
     text-align: center;
-    flex-grow: 1; /* Растягивает блок с текстом, чтобы кнопки были на одном уровне */
+    flex-grow: 1;
 }
 
 .news-title {
@@ -83,17 +83,16 @@
 .news-date {
     font-size: 0.9rem;
     color: #888;
-    display: block; /* С новой строки */
+    display: block;
     margin-top: 10px;
 }
 
-/* Адаптивность для телефонов */
+/* Адаптивность для телефонов больше не нужна в том виде,
+   так как Grid сам перестроит всё в 1 колонку, если места мало.
+   Но можно оставить на всякий случай для совсем маленьких экранов. */
 @media (max-width: 768px) {
     .news-grid {
-        flex-direction: column; /* Блоки друг под другом */
-    }
-    .news-card {
-        margin-bottom: 20px;
+        /* flex-direction: column; <- Это больше не нужно для Grid */
     }
 }
 /* ========================================= */
