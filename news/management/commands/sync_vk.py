@@ -26,6 +26,12 @@ class Command(BaseCommand):
             wall = vk.wall.get(owner_id=GROUP_ID, count=COUNT)
 
             for post in wall['items']:
+                attachments = post.get('attachments', [])
+
+                # Если вложения есть, и абсолютно ВСЕ они имеют тип 'video' — скипаем новость
+                if attachments and all(att.get('type') == 'video' for att in attachments):
+                    self.stdout.write(f"Пост {post['id']} содержит только видео. Скипаем.")
+                    continue
                 # Пропускаем, если уже есть в базе
                 post_id = post['id']
                 if NewsItem.objects.filter(vk_id=post_id).exists():
